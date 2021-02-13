@@ -23,7 +23,8 @@ const Reaction = model('Reaction', ReactionSchema);
 
 const ThoughtsSchema = new Schema({
   writtenBy: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   thoughtBody: {
     type: String

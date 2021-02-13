@@ -62,7 +62,7 @@ const userController = {
       })
       .catch(err => res.status(400).json(err));
   },
-  updateFriend({ params, body }, res) {
+  addFriend({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, { new: true })
       .then(dbUserData => {
         if (!dbUserData) {

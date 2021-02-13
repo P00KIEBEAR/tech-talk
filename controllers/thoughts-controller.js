@@ -2,6 +2,29 @@ const { Thoughts, User } = require('../models');
 
 const thoughtsController = {
 
+  getAllThoughts(req, res) {
+    Thoughts.find({})
+      .then(dbThoughtsData => res.json(dbThoughtsData))
+      .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  },
+  getThoughtsById({ params }, res) {
+    Thoughts.findOne({ _id: params.id })
+      .then(dbThoughtsData => {
+        // If no Thoughts is found, send 404
+        if (!dbThoughtsData) {
+          res.status(404).json({ message: 'No Thoughts found with this id!' });
+          return;
+        }
+        res.json(dbThoughtsData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  },
   addThoughts({ params, body }, res) {
     console.log(params);
     Thoughts.create(body)

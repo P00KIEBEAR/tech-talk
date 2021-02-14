@@ -42,7 +42,7 @@ const UserSchema = new Schema({
 
   //virtuals
 )
-UserSchema.virtual('friend').get(function () {
+UserSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 })
 //from mongoosejs.com/docs/validation.html

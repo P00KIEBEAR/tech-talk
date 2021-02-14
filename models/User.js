@@ -42,6 +42,9 @@ const UserSchema = new Schema({
 
   //virtuals
 )
+UserSchema.virtual('friend').get(function () {
+  return this.friends.length;
+})
 //from mongoosejs.com/docs/validation.html
 const User = model('User', UserSchema);
 module.exports = User;
